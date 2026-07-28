@@ -35,20 +35,20 @@ func (m Model) onSelectKey(msg tea.KeyMsg) (Model, tea.Cmd) {
 		return m, nil
 
 	case key.Matches(msg, m.selectKeyMap.Left):
-		if m.Focus.field == TaskType {
-			m.Focus.field = _SelectedFieldCount - 1
+		if m.SelectCtx.field == TaskType {
+			m.SelectCtx.field = _SelectedFieldCount - 1
 		} else {
-			m.Focus.field = (m.Focus.field - 1) % _SelectedFieldCount
+			m.SelectCtx.field = (m.SelectCtx.field - 1) % _SelectedFieldCount
 		}
 		return m, nil
 
 	case key.Matches(msg, m.selectKeyMap.Right):
-		m.Focus.field = (m.Focus.field + 1) % _SelectedFieldCount
+		m.SelectCtx.field = (m.SelectCtx.field + 1) % _SelectedFieldCount
 		return m, nil
 
 	case key.Matches(msg, m.selectKeyMap.Select):
 		if task, ok := m.list.SelectedItem().(Item); ok {
-			switch m.Focus.field {
+			switch m.SelectCtx.field {
 			case TaskType:
 				m.Focus.prevType = task.Type
 				task.Type = cycleTypeField(task.Type, 1, m.typeOptions)

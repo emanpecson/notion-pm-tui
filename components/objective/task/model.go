@@ -168,7 +168,7 @@ func (m Model) addTask() Model {
 			// Initialize focus state
 			m.Focus.taskID = tempID
 			m.Focus.taskIdx = i
-			m.Focus.field = TaskTitle
+			m.SelectCtx.field = TaskTitle
 
 			// Initialize text input and enter writing mode
 			m.Focus.tempTitle = initTempTitle(newTask)

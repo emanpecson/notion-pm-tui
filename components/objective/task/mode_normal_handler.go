@@ -29,7 +29,7 @@ func (m Model) onNormalKey(msg tea.KeyMsg) (Model, tea.Cmd) {
 		} else if task, ok := selected.(Item); ok {
 			m.Focus.taskID = task.ID
 			m.Focus.taskIdx = m.list.Index()
-			m.Focus.field = TaskTitle
+			m.SelectCtx.field = TaskTitle
 
 			m.ActiveKeyMap = SelectKeyMapper
 			m.Focus.Mode = SelectMode
